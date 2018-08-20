@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <form method="POST" action="" class="post-form" enctype="multipart/form-data">
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+                <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        {% endif %}
+          <h1>{{ post.title }}</h1>
+          <p>{{ post.text|linebreaksbr }}</p>
+        {% if post.image %}
+          <img src="{{ post.image.url }}">
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+<!--
+{% if post.published_date %} 로 시작해서
+{% else %}
+{% endif %} 로 끝난부분 이것또한 템플릿 태그 / 내용이 있는지 확인하는 태그이다.
+post 게시일(published_date)이 있는지, 없는지 확인하는 부분입니다
+-->

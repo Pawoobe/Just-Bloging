@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<form method="POST" action="" class="post-form" enctype="multipart/form-data">
+    {% for post in posts %}
+        <div class="post">
+            <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|truncatechars:200 }}</p>
+    {% if post.image %}
+            <img src="{{ post.image.url }}">
+        </div>
+  {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+<!--
+<p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p> 으로 일 월 년 순으로 오름차순 정렬
+pk=post.pk 로 title과 text에 접근함.
+post.text|truncatechars:200  : 미리보기 화면이므로 text의 글이 200글자만 제한해서 표시 됨을 의미
+-->

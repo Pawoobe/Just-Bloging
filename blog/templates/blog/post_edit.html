@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+<!-- <head><script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script></head>-->
+{% block content %}
+    <h1>New post</h1>
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
+
+<!--
+form 이 보이기 위해서 form.as_p로 간단히 생성한뒤,
+<form method="POST"> ... </form>으로 감싼다. 그리고 마지막으로 보안 기능인 csrf_token을 추가함
+
+이로인해 post수정 폼이 완성됨
+-->

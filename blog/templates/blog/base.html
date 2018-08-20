@@ -1,0 +1,32 @@
+{% load static %}
+
+        <title>T B</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+        <div class="page-header">
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+            <a href="{% url 'create' %}" class="top-menu"><span class="glyphicon glyphicon-camera"></span></a>
+            <h1><a href="/">Testing BLOG</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                  <div>
+              <li><a href="{% url 'search' %}">search</a></li>
+              <li><a href="http://0.0.0.0:8000/admin/">Admin</a></li>
+                    {% block content %}
+                    {% endblock %}
+                  </div>
+                </div>
+            </div>
+        </div>
+
+<!--
+
+block 생성. 템플릿 태그로 html내에 들어갈 수있는 공간(block)을 만든것임
+base.html을 확장해 다른 템플릿에도 가져다 쓸수 있게함.
+
+-->

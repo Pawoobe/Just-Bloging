@@ -1,0 +1,43 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<form method="POST" action="" class="post-form" enctype="multipart/form-data">
+    {% for post in post_list %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+            {% if post.image %}
+            <img src="{{ post.image.url }}">
+          </div>
+            {% endif %}
+    {% endfor %}
+{% endblock %}
+
+<!--
+html은 정적으로 진행되지만, 파이썬은 동적으로 실행됨.
+템플릿 태그는 파이썬을 html로 바꿔주어 빠르고 쉽게 동적인 웹사이트를 만들어줌
+{{ post.title }} : 모델에서 정의한 title필드에 접근하기 위해 이용
+{{ post.text|linebreaksbr }} : 모델에서 정의한 texx필드에 접근하기 위해 이용,
+*|linebreaksbr : 블로그 글에서 행이 바뀌면 문단으로 변환하도록 함
+
+{% for post in posts %} / {% endfor %} 를 집어넣음으로써, for loop를 이용함. 이 사이의 모든것은 목록의
+모든 객체를 반복하게 된다
+
+base.html에 작성했던 block들이 for구문 위아래로 배치되있는 상태.
+base.html에있는 html 구조를 가져옴으로써, 불필요한 html코드를 없애고, 동적으로 연동시켜 연관된 내용을 표시할 수있도록 함
+base.html의 body의 내용까지만 가져오고 나머지는 블록처리를 이용해 가져옴
+-->
+<!--
+<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1> 장고템플릿 태그를 의미
+pk=post.pk : pk는 데이터베이스의 각 레코드를 식별하는 기본키의 줄임말,
+Post 모델에서 기본키를 지정하지 않았기 때문에 장고는 pk드를 추가해 새로운 블로그 게시물이 추가될때마다
+그 값이 1,2,3 이렇게 증가하게 되있음. Post객체의 다른 필드 (제목, 작성자 등)에 액세스 하는것과 같은 방식으로 post.pk를 작성하여
+기본키에 엑세스함. post.pk를 써서 기본키에 접근할 수 있고, Post 객체내 다른 필드 (title, author)에도 접근 가능
+
+
+
+결론적으로 pk는 뒤에 입력하는 변수를 모두 pk변수에 저장한다는 의미
+-->
