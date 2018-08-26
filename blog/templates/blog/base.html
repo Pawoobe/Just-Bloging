@@ -7,8 +7,6 @@
     <body>
         <div class="page-header">
             <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-            <a href="{% url 'create' %}" class="top-menu"><span class="glyphicon glyphicon-camera"></span></a>
             <h1><a href="/">Testing BLOG</a></h1>
         </div>
         <div class="content container">
@@ -16,7 +14,6 @@
                 <div class="col-md-8">
                   <div>
               <li><a href="{% url 'search' %}">search</a></li>
-              <li><a href="http://0.0.0.0:8000/admin/">Admin</a></li>
                     {% block content %}
                     {% endblock %}
                   </div>

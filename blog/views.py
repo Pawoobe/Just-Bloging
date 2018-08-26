@@ -53,36 +53,12 @@ def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
-def post_publish(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.publish()
-    return redirect('post_detail', pk=pk)
 
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
 
-def detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    messages = (
-        '<p>{pk}번 사진</p>'.format(pk=post.pk),
-        '<p>주소는 {url}</p>'.format(url=post.image.url),
-        '<p><img src="{url}"/ ></p>'.format(url=post.image.url),
-    )
-    return HttpResponse('\n'.join(messages))
-
-def create(request):
-    if request.method == "GET":
-        form = PostForm()
-    elif request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            obj = form.save()
-            return redirect(obj)
-
-    ctx = {'form': form,}
-    return render(request, 'edit.html', ctx)
 
 class SearchFormView(FormView):
     # form_class를 forms.py에서 정의했던 PostSearchForm으로 정의

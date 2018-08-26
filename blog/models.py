@@ -21,18 +21,18 @@ class Post(models.Model):   #모델을 정의하는 코드 (모델 = 객체)
 
     class Meta:
         ordering = ['-id']
-        
+
     def publish(self):
         self.published_date = timezone.now()
         self.save()
 
-def delete(self, *args, **kwargs):
-    self.image.delete()
-    super(Post, self).delete(*args, **kwargs)
+    def delete(self, *args, **kwargs):
+        self.image.delete()
+        super(Post, self).delete(*args, **kwargs)
 
-def get_absolute_url(self):
-    url = reverse_lazy('detail', kwargs={'pk': self.pk})
-    return url
+    def get_absolute_url(self):
+        url = reverse_lazy('post_detail', kwargs={'pk': self.pk})
+        return url
 
 '''
 models.py : 모델을 정의하는 모듈. 데이터를 구성하는 항목 자체(field)와 데이터를 다루는 행위를 포함

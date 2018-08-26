@@ -1,6 +1,9 @@
 <html>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <body>
 <div id="content">
+    <a href="{% url 'post_list' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span></a>
     <h1><a href={% url 'search' %}>Blog Search</a></h1>
 
     <form method="post">
@@ -13,9 +16,9 @@
 
     {% if object_list %}
         {% for post in object_list %}
-            <h2><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h2>
+            <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
             {{ post.modify_date|date:'N d, Y' }}
-            <p>{{ post.title }}</p>
+            <p>{{ post.text }}</p>
         {% endfor %}
     {% elif search_term %}
         <b><i>Search Word({{ search_term }}) Not Found !</i></b>

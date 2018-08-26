@@ -2,19 +2,13 @@ from django.conf.urls import include, url #User 목록을 불러움
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
-
-from blog.views import detail
-from blog.views import create
-
+from blog import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('blog.urls')),
-    url(r'^blog/(?P<pk>[0-9]+)$',detail, name='detail'),
-    url(r'^blog/upload/$', create, name='create'),
-    url(r'^accounts/login/', auth_views.login, name='login', kwargs={'template_name': 'login.html'}),
-    url(r'^accounts/logout/', auth_views.logout, name='logout', kwargs={'next_page': settings.LOGIN_URL}),
+    url(r'^blog/(?P<pk>[0-9]+)$',views.post_detail, name='post_detail'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -44,8 +38,5 @@ url(r'^blog/(?P<pk>[0-9]+)$',
     업로드된 파일은 upload_files이라는  url르 따르므로 urls.py에도 관련된 내용을 등록해야한다. upload_files 뒤에 나오는 경로를 받은 뒤 지정된 경로에 있는 이미지 파일을 읽어온 후 웹 브라우저에 보내는 것이다 (경로가 없으면 404 오류)
     이러한 과정을 금방 처리해주는 기능이 from django.conf.urls.static import static 모듈의 static함수.
 
-r'^accounts/login/' : 은 로그인하는 URL임, 로그인 화면을 출력하거나, 로그인 인증처리를 하는 뷰 함수는 Django에 내장, login뷰 함수를 이용
-r'^accounts/logout/' : 로그아웃 하는 URL 로그인 기능과 마찬가지. 키워드 인자 next_page 는 로그아웃 하고 난 뒤에 이동할 URL을 의미함. template_name 을 지정하지 않으면, django에 내장된 로그아웃 화면이 나옴.
-from django.contrib.auth import views as auth_views 모듈 안에 함수 객체가 존재함. kwargs는 URL패턴에 연결한 뷰함수에 추가로 전달할 인자를 사전형객체로 전달함 ==> login.html로 전송
 
 '''

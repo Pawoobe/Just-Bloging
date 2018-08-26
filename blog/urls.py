@@ -7,11 +7,9 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
     url(r'^post/new/$', views.post_new, name='post_new'),
     url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
-    url(r'^post/(?P<pk>\d+)/publish/$', views.post_publish, name='post_publish'),
     url(r'^post/(?P<pk>\d+)/remove/$', views.post_remove, name='post_remove'),
     url(r'^drafts/$', views.post_draft_list, name='post_draft_list'),
     url(r'^search/$', SearchFormView.as_view(), name='search'),
-    url(r'^create/$', views.create, name='create'),
 ]
 
 '''
@@ -32,7 +30,6 @@ pk는 원하는 변수명, 원하는 이름으로 변경할수 있음 pk를 post
 
 *url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'), : pk변수에 모든 값을 넣어 뷰로 전송,
 
-*url(r'^drafts/$', views.post_draft_list, name='post_draft_list'), : 수정 버튼 url
 
 
 '''
