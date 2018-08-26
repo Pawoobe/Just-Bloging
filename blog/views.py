@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from django.utils import timezone #timezone의 모듈을 불러옴
-from .models import Post #models.py 파일에 정의된 모델을 가져옴 / "."은 현재 디렉토리 또는 어플리케이션을 의미함. 동일한 디렉토리 내에 views . models 파일이 있기때문에 ". 파일명"으로 내용을 가져올수 있음
+from django.utils import timezone
+from .models import Post
 from django.shortcuts import redirect
-from django.shortcuts import render, get_object_or_404 #장고에서 주어진 기능. pk에 해당하는 Post가 없을경우, 404페이지를 보여줌
+from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
-from django.views.generic.edit import FormView # FormView 클래스형 제네릭 뷰를 import
+from django.views.generic.edit import FormView
 from blog.forms import PostSearchForm
 from django.db.models import Q # 검색기능에 필요한 q 클래스를 import
 from django.http import HttpResponse
