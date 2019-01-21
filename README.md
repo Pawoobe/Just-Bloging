@@ -16,28 +16,9 @@ mysite
         
         __init__.py
         
-mysite
-
-        __init__.py
-
-        settings.py 
-
-        urls.py
-
-        wsgi.py 
 
 blog
 
-        migrations
-     
-        __init__.py
-     
-        0001_initial.py	first upload
-     
-        0002_photo.py	first upload
-     
-        0003_auto_20180821_0406.py
-     
         __init__.py
      
         admin.py
@@ -46,5 +27,28 @@ blog
      
         tests.py
      
-        views.py        
- 
+        views.py  
+
+   migrations
+     
+                __init__.py
+     
+                0001_initial.py
+     
+                0002_photo.py
+     
+                0003_auto_20180821_0406.py
+        
+   templates/blog
+        
+                base.html
+                
+                post_detail.html
+                
+                post_draft_list.html
+                
+                post_edit.html
+                
+                post_list.html
+                
+                post_search.html
