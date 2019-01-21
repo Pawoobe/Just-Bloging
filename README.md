@@ -58,4 +58,4 @@ blog
                 
                 post_list.html - 글목록
                 
-                post_search.html - 
+                post_search.html - 글찾기
